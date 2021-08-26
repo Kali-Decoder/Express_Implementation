@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express Implementation</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Rampart+One&display=swap");
+        *{margin: 0%;padding: 0%;box-sizing: border-box;}
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #48cae4;
+        overflow: hidden;
+      }
+      .info {
+        width: 45rem;
+        height: 30rem;
+        border: 1px solid black;
+        border-radius: 20px 20px 0px 0px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+          rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        background-color: #00b4d8;
+        overflow-y: scroll;
+        margin-bottom: 10px;
+      }
+      .grid
+      {
+          display: grid;
+          grid-template-columns: 20rem 2.5rem;
+          grid-gap: 20px;
+          justify-content: center;
+          align-items: center;
+
+      }
+      .text
+      {
+            width: 20rem;
+            height: auto;
+            padding: 10px 45px;
+            color: white;
+            background-color: black;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            word-wrap: break-word;
+            word-break:break-all;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 30px;
+
+      }
+      .btn
+      {
+          margin-left: 20px;
+          margin-top: 18px;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          cursor: pointer;
+          background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="info">
+        <h2
+          style="
+            text-align: center;
+            font-family: 'Rampart One', cursive;
+            color: black;
+          "
+        >
+          Express Simple Server Example!
+        </h2>
+        
+      </div>
+    </div>
+    <!--     -->
+    <script>
+      const array = [
+        `const express = require('express')`,
+        `const app = express()","app.get('/', (req, res) => {
+  res.send('Hello World!')
+})`,
+        `app.listen(port, () => {
+  console.log('Example app listening at http://localhost: '+port)
+    })`,`app.use(express.static('public', options))`,`var admin = express()
+
+admin.on('mount', function (parent) {
+  console.log('Admin Mounted')
+  console.log(parent) // refers to the parent app
+})
+
+admin.get('/', function (req, res) {
+  res.send('Admin Homepage')
+})
+
+app.use('/admin', admin)`,`app.delete('/', function (req, res) {
+  res.send('DELETE request to homepage'),  
+})`, `const express=require("express");
+const path=require("path");
+
+ const pathRequire=path.join(__dirname,"./src")
+
+const app=express();
+// Middle Ware
+app.use(express.static(pathRequire));
+app.get("/",(req,res)=>{
+    res.send("Welcome To Home Page !");
+});
+
+app.get("/about",(req,res)=>{
+    res.status(200).send("Welcome To About Page !");
+});
+
+app.get("/contact",(req,res)=>{
+    res.status(200).send("Welcome To Contact Page !");
+});
+
+
+const port=5000;
+
+app.listen(port,()=>{
+    console.log("Welcome to port :" + port);
+})`
+      ];
+
+    array.forEach((ele)=>{
+        var div=`<div class="grid">
+            <div readonly class="text">${ele}</div>
+            <button class="btn"><i class="fas fa-copy " style="font-size: 25px; color: white;"></i> </button>
+        </div>`;
+
+        document.querySelector(".info").innerHTML+=div;  
+    });
+
+    var btn=document.querySelectorAll(".btn");
+    btn.forEach((ele)=>{
+        ele.addEventListener('click',(e)=>{
+            var sibling=ele.previousElementSibling;
+            document.execCommand("copy");
+            var old=ele.innerHTML;
+            ele.innerHTML=`<i class="fas fa-check-circle" style="font-size: 25px; color:greenyellow;"></i>`;
+            setTimeout(()=>{
+                ele.innerHTML=old;
+            },2000)
+
+        })
+    })
+    
+    </script>
+  </body>
+</html>
